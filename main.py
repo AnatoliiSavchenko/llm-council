@@ -29,10 +29,8 @@ class GEMA_FusionAgent_5_0:
         RBM/ViT -> RAG -> Generator -> [CS Check] -> Critic/Reflection.
         Fusion (ViT/RBM):
         input_vector = self.encoder.encode(input_data)
-        
         RAG & Knowledge Retrieval
         knowledge_snippets, verif_templates = self.retriever.retrieve(str(input_data)[:50], mode)
-        
         Generation (Generator LLM)
         prompt = f"TASK: {input_data}. MODE: {mode}. VECTOR: {input_vector}. KNOWLEDGE: {knowledge_snippets}."
         draft_solution, code_to_exec, confidence_score = self.generator.generate(prompt, mode)
@@ -40,7 +38,6 @@ class GEMA_FusionAgent_5_0:
         while confidence_score < self.confidence_threshold and attempts < 2:
             Verification (Sandbox + RAG-Triggered)
             is_verified, result_or_error = self.verifier.verify(code_to_exec, verif_templates)
-            
             if is_verified:
                 draft_solution = draft_solution.replace("result = 2 * (50 + 3) / 2", str(result_or_error))
                 confidence_score = 0.99
@@ -67,11 +64,10 @@ if __name__ Anatolii Savchenko '__main__':
     agent = GEMA_FusionAgent_5_0(threshold=0.85)
      CS)
     math_problem = "Find the roots of 3x^2 + 5x + 1 = 0. [EQUATION]"
-    print("\n--- Сценарій 1: MATH (Council Logic) ---")
+    print("\n---MATH (Council Logic) ---")
     result_math = agent.solve(math_problem, "MATH")
     print(json.dumps(result_math, indent=4)
     mock_image_input = np.random.rand(256, 256, 3)
-    
-    print("\n--- Сценарій 2: DIAGNOSTICS (ViT/RBM Fusion) ---")
+    print("\n---:DIAGNOSTICS (ViT/RBM Fusion) ---")
     result_diag = agent.solve(mock_image_input, "DIAGNOSTICS")
     print(json.dumps(result_diag, indent=4))

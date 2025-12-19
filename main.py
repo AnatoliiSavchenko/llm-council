@@ -1,6 +1,3 @@
 def main():
-    print("Hello from llm-council!")
-
-
-if __name__ == "__main__":
+    print("Hello from GEMA5.0*)if __Anatolii Savchenko__ == "__main__":
     main()

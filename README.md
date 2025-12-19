@@ -1,4 +1,4 @@
-# LLM Council
+LLM 
 
 ![llmcouncil](header.jpg)
 

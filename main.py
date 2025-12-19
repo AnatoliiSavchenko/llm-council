@@ -12,7 +12,6 @@ class GEMAGenerator(LLMInterface):
         return f"Draft answer for {mode} task.", None, 0.90Critic 
 class GEMACritic(LLMInterface):
     def generate(self, prompt: str, mode: str) -> Tuple[str, Union[None, str], float]:
-        """Генерує критику та протокол виправлення."""
         if "CRITIQUE_PROTOCOL" in prompt:
             return "CRITIQUE: The previous code did not account for integer truncation. FIX: Use floating point division and re-run. CRITIQUE_NEEDED", None, 0.98
         return "Not a critique query.", None, 0.0
